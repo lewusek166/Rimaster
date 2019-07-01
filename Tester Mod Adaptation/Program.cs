@@ -16,7 +16,7 @@ namespace Tester_Mod_Adaptation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Connection());
         }
     }
 }

@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Tester_Mod_Adaptation
 {
-    public partial class Form1 : Form
+    public partial class Polaczenia : Form
     {
-        public Form1()
+        public Polaczenia()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

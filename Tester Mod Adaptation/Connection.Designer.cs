@@ -162,7 +162,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(1127, 230);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Połącz z TMT 2868";
+            this.button1.Text = "Connect with TMT 2868";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel9
@@ -187,7 +187,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(1128, 230);
             this.button2.TabIndex = 0;
-            this.button2.Text = "Napisz Program";
+            this.button2.Text = " Program";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel4

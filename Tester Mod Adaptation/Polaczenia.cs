@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Tester_Mod_Adaptation
 {
     public partial class Polaczenia : Form
@@ -15,6 +16,11 @@ namespace Tester_Mod_Adaptation
         public Polaczenia()
         {
             InitializeComponent();
+        }
+
+        private void Polaczenia_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

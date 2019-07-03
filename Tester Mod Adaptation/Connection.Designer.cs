@@ -86,7 +86,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.Size = new System.Drawing.Size(2279, 568);
             this.tableLayoutPanel2.TabIndex = 0;
-            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.TableLayoutPanel2_Paint);
+
             // 
             // tableLayoutPanel5
             // 
@@ -189,6 +189,7 @@
             this.button2.TabIndex = 0;
             this.button2.Text = " Program";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // tableLayoutPanel4
             // 

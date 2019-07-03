@@ -12,6 +12,7 @@ namespace Tester_Mod_Adaptation
 {
     public partial class Connection : Form
     {
+        
         public Connection()
         {
             InitializeComponent();
@@ -26,11 +27,12 @@ namespace Tester_Mod_Adaptation
 
         }
 
-        private void TableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
 
+            this.Visible = false;
+            Polaczenia po = new Polaczenia();
+            po.ShowDialog();
         }
-
-       
     }
 }

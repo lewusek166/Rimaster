@@ -22,5 +22,10 @@ namespace Tester_Mod_Adaptation
         {
 
         }
+
+        private void TableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

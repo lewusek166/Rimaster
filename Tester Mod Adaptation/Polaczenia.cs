@@ -20,10 +20,26 @@ namespace Tester_Mod_Adaptation
 
         private void Polaczenia_Load(object sender, EventArgs e)
         {
-
+            FormBorderStyle = FormBorderStyle.Sizable;
+            WindowState = FormWindowState.Maximized;
+            TopMost = true;
         }
 
         private void TableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+            ///DataTable table = new DataTable();
+          
+            
+            for(int i = 1; i < 51; i++)
+            {
+                dataGridView1.Rows.Add(i, "");
+            }
+
+           
+
+        }
+
+        private void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
 
         }

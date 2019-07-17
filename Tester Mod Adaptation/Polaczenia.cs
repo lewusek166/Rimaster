@@ -16,6 +16,7 @@ namespace Tester_Mod_Adaptation
         public Polaczenia()
         {
             InitializeComponent();
+
         }
 
         private void Polaczenia_Load(object sender, EventArgs e)
@@ -27,23 +28,14 @@ namespace Tester_Mod_Adaptation
 
         private void TableLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
-            
-                
-            
 
             for (int i = 1; i < 51; i++)
             {
                 dataGridView1.Rows.Add(i, "");
             }
-
-           
-
         }
 
-        private void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
         private void pasteCtrlVToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PasteClipboard();

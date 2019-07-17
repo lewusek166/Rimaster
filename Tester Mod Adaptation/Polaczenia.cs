@@ -76,7 +76,7 @@ namespace Tester_Mod_Adaptation
                                     if (oCell.Value.ToString() != sCells[i])
                                     {
                                         oCell.Value = Convert.ChangeType(sCells[i], oCell.ValueType);
-                                        oCell.Style.BackColor = Color.Tomato;
+                                        //oCell.Style.BackColor = Color.Tomato;
                                     }
                                     else
                                         iFail++;//only traps a fail if the data has changed and you are pasting into a read only cell
@@ -107,7 +107,7 @@ namespace Tester_Mod_Adaptation
                 cell.Value = "";
             }
             e.Handled = true;
-            if ((e.Control && e.KeyCode == Keys.Insert) || (e.Shift && e.KeyCode == Keys.Insert))
+            if (e.Control && e.KeyCode == Keys.V)
             {
                 PasteClipboard();
             }

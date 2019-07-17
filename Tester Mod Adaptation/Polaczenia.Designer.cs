@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-             System.Windows.Forms.ToolStripMenuItem pasteCtrlVToolStripMenuItem_Click=new System.Windows.Forms.ToolStripMenuItem();
-
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.pasteCtrlVToolStripMenuItem_Click = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -40,11 +39,22 @@
             this.D_Sub = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Name_Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.to = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.from = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Component = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pasteCtrlVToolStripMenuItem_Click
+            // 
+            this.pasteCtrlVToolStripMenuItem_Click.Name = "pasteCtrlVToolStripMenuItem_Click";
+            this.pasteCtrlVToolStripMenuItem_Click.Size = new System.Drawing.Size(32, 19);
             // 
             // tableLayoutPanel1
             // 
@@ -57,10 +67,11 @@
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Arial", 14.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(1);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(2608, 1152);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1155, 625);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -70,12 +81,13 @@
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.dataGridView1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(1, 1);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(1);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 91.01221F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.987783F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(548, 1146);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(243, 623);
             this.tableLayoutPanel2.TabIndex = 0;
             this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.TableLayoutPanel2_Paint);
             // 
@@ -87,20 +99,22 @@
             this.tableLayoutPanel4.Controls.Add(this.button1, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.button2, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 1045);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(1, 568);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(1);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(542, 98);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(241, 54);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Location = new System.Drawing.Point(1, 1);
+            this.button1.Margin = new System.Windows.Forms.Padding(1);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(260, 92);
+            this.button1.Size = new System.Drawing.Size(116, 52);
             this.button1.TabIndex = 0;
             this.button1.Text = "Check Pins";
             this.button1.UseVisualStyleBackColor = true;
@@ -109,9 +123,10 @@
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button2.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.Location = new System.Drawing.Point(269, 3);
+            this.button2.Location = new System.Drawing.Point(119, 1);
+            this.button2.Margin = new System.Windows.Forms.Padding(1);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(270, 92);
+            this.button2.Size = new System.Drawing.Size(121, 52);
             this.button2.TabIndex = 1;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
@@ -126,11 +141,12 @@
             this.D_Sub,
             this.Name_Pin});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Location = new System.Drawing.Point(1, 1);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 20;
             this.dataGridView1.RowTemplate.Height = 40;
-            this.dataGridView1.Size = new System.Drawing.Size(542, 1036);
+            this.dataGridView1.Size = new System.Drawing.Size(241, 565);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataGridView1_KeyDown);
             // 
@@ -147,33 +163,78 @@
             this.D_Sub.MinimumWidth = 12;
             this.D_Sub.Name = "D_Sub";
             this.D_Sub.ReadOnly = true;
-            this.D_Sub.Width = 231;
-            
+            this.D_Sub.Width = 95;
             // 
             // Name_Pin
             // 
             this.Name_Pin.HeaderText = "Name Pin";
             this.Name_Pin.MinimumWidth = 12;
             this.Name_Pin.Name = "Name_Pin";
-            this.Name_Pin.Width = 297;
+            this.Name_Pin.Width = 122;
             // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(564, 3);
+            this.tableLayoutPanel3.Controls.Add(this.dataGridView2, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(249, 1);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(1);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(200, 100);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(905, 623);
             this.tableLayoutPanel3.TabIndex = 1;
+            // 
+            // to
+            // 
+            this.to.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.to.HeaderText = "Wire To";
+            this.to.Name = "to";
+            this.to.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.to.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.to.Width = 86;
+            // 
+            // from
+            // 
+            this.from.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.from.HeaderText = "Wire From";
+            this.from.Name = "from";
+            this.from.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.from.Width = 130;
+            // 
+            // Component
+            // 
+            this.Component.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Component.DisplayStyleForCurrentCellOnly = true;
+            this.Component.HeaderText = "Component";
+            this.Component.Items.AddRange(new object[] {
+            "Wire",
+            "Resistor"});
+            this.Component.Name = "Component";
+            this.Component.Width = 124;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Component,
+            this.from,
+            this.to});
+            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(384, 563);
+            this.dataGridView2.TabIndex = 0;
+            this.dataGridView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataGridView2_KeyDown);
             // 
             // Polaczenia
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2608, 1152);
+            this.ClientSize = new System.Drawing.Size(1155, 625);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "Polaczenia";
             this.Text = "Tester Mod Adaptation";
             this.Load += new System.EventHandler(this.Polaczenia_Load);
@@ -181,6 +242,8 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -195,5 +258,10 @@
         public System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn D_Sub;
         private System.Windows.Forms.DataGridViewTextBoxColumn Name_Pin;
+        private System.Windows.Forms.ToolStripMenuItem pasteCtrlVToolStripMenuItem_Click;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Component;
+        private System.Windows.Forms.DataGridViewTextBoxColumn from;
+        private System.Windows.Forms.DataGridViewTextBoxColumn to;
     }
 }

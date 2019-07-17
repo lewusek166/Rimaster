@@ -32,37 +32,61 @@ namespace Tester_Mod_Adaptation
             for (int i = 1; i < 51; i++)
             {
                 dataGridView1.Rows.Add(i, "");
+                dataGridView2.Rows.Add(Component.Items., "","");
+            }
+        }
+
+       
+        private void DataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.Delete)
+            foreach (DataGridViewCell cell in dataGridView1.SelectedCells)
+            {
+                cell.Value = "";
+            }
+            e.Handled = true;
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                PasteClipboard(dataGridView1);
             }
         }
 
 
-        private void pasteCtrlVToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DataGridView2_KeyDown(object sender, KeyEventArgs e)
         {
-            PasteClipboard();
+            if (e.KeyCode == Keys.Delete)
+                foreach (DataGridViewCell cell in dataGridView2.SelectedCells)
+                {
+                    cell.Value = "";
+                }
+            e.Handled = true;
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                PasteClipboard(dataGridView2);
+            }
         }
 
-        /// <summary>
-        /// This will be moved to the util class so it can service any paste into a DGV
-        /// </summary>
-        private void PasteClipboard()
+
+
+        private void PasteClipboard(DataGridView grid)
         {
             try
             {
                 string s = Clipboard.GetText();
                 string[] lines = s.Split('\n');
-                int iFail = 0, iRow = dataGridView1.CurrentCell.RowIndex;
-                int iCol = dataGridView1.CurrentCell.ColumnIndex;
+                int iFail = 0, iRow = grid.CurrentCell.RowIndex;
+                int iCol = grid.CurrentCell.ColumnIndex;
                 DataGridViewCell oCell;
                 foreach (string line in lines)
                 {
-                    if (iRow < dataGridView1.RowCount && line.Length > 0)
+                    if (iRow < grid.RowCount && line.Length > 0)
                     {
                         string[] sCells = line.Split('\t');
                         for (int i = 0; i < sCells.GetLength(0); ++i)
                         {
-                            if (iCol + i < this.dataGridView1.ColumnCount)
+                            if (iCol + i < grid.ColumnCount)
                             {
-                                oCell = dataGridView1[iCol + i, iRow];
+                                oCell = grid[iCol + i, iRow];
                                 if (!oCell.ReadOnly)
                                 {
                                     if (oCell.Value.ToString() != sCells[i])
@@ -71,7 +95,7 @@ namespace Tester_Mod_Adaptation
                                         //oCell.Style.BackColor = Color.Tomato;
                                     }
                                     else
-                                        iFail++;//only traps a fail if the data has changed and you are pasting into a read only cell
+                                        iFail++;
                                 }
                             }
                             else
@@ -91,18 +115,7 @@ namespace Tester_Mod_Adaptation
                 return;
             }
         }
-        private void DataGridView1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode==Keys.Delete)
-            foreach (DataGridViewCell cell in dataGridView1.SelectedCells)
-            {
-                cell.Value = "";
-            }
-            e.Handled = true;
-            if (e.Control && e.KeyCode == Keys.V)
-            {
-                PasteClipboard();
-            }
-        }
+
     }
+
 }

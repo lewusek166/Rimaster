@@ -28,11 +28,11 @@ namespace Tester_Mod_Adaptation
 
         private void TableLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
-
+            
             for (int i = 1; i < 51; i++)
             {
                 dataGridView1.Rows.Add(i, "");
-                dataGridView2.Rows.Add(Component.Items., "","");
+                dataGridView2.Rows.Add("","");
             }
         }
 
@@ -116,6 +116,7 @@ namespace Tester_Mod_Adaptation
             }
         }
 
+       
     }
 
 }

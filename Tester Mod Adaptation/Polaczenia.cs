@@ -116,7 +116,12 @@ namespace Tester_Mod_Adaptation
             }
         }
 
-       
+        private void TableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+      
     }
 
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pasteCtrlVToolStripMenuItem_Click = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -43,9 +43,9 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button6 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -137,17 +137,17 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 20;
             this.dataGridView1.RowTemplate.Height = 40;
-            this.dataGridView1.Size = new System.Drawing.Size(239, 513);
+            this.dataGridView1.Size = new System.Drawing.Size(239, 519);
             this.dataGridView1.TabIndex = 2;
             // 
             // D_Sub
             // 
             this.D_Sub.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            this.D_Sub.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            this.D_Sub.DefaultCellStyle = dataGridViewCellStyle1;
             this.D_Sub.FillWeight = 2F;
             this.D_Sub.HeaderText = "D-SUB";
             this.D_Sub.MinimumWidth = 12;
@@ -180,9 +180,9 @@
             // 
             this.tableLayoutPanel3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel3.Controls.Add(this.dataGridView2, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.button6, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
@@ -209,7 +209,7 @@
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(3, 40);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(295, 517);
+            this.dataGridView2.Size = new System.Drawing.Size(356, 517);
             this.dataGridView2.TabIndex = 10;
             // 
             // dataGridViewTextBoxColumn3
@@ -234,37 +234,10 @@
             this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button6.Location = new System.Drawing.Point(3, 563);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(295, 57);
+            this.button6.Size = new System.Drawing.Size(356, 57);
             this.button6.TabIndex = 7;
             this.button6.Text = "Connect with TMT2868 and TEST ";
             this.button6.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(605, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(297, 37);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "label4";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Arial", 24.1F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(304, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(295, 37);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Table Resistor ";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -275,10 +248,37 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(295, 37);
+            this.label1.Size = new System.Drawing.Size(356, 37);
             this.label1.TabIndex = 11;
             this.label1.Text = "Table Connections";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Font = new System.Drawing.Font("Arial", 24.1F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Location = new System.Drawing.Point(365, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(356, 37);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Table Resistor ";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label4.Location = new System.Drawing.Point(727, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(175, 37);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "label4";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Polaczenia
             // 

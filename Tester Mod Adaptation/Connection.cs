@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace Tester_Mod_Adaptation
 {
@@ -34,6 +36,14 @@ namespace Tester_Mod_Adaptation
             this.Visible = false;
             Polaczenia po = new Polaczenia();
             po.ShowDialog();
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            TestPins test = new TestPins();
+            test.ShowDialog();
+
         }
     }
 }

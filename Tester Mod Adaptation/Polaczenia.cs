@@ -121,7 +121,16 @@ namespace Tester_Mod_Adaptation
 
         }
 
-       
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            
+            DialogResult result;
+            result = MessageBox.Show("Exit Aplication ?", "", MessageBoxButtons.YesNo);
+            if(result==DialogResult.Yes)
+            {
+            Application.Exit();
+            }  
+        }
     }
 
 }

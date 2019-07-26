@@ -131,6 +131,13 @@ namespace Tester_Mod_Adaptation
             Application.Exit();
             }  
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Connection connection = new Connection();
+            connection.Visible = true;
+        }
     }
 
 }

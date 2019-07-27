@@ -64,7 +64,6 @@ namespace Tester_Mod_Adaptation
             String wybranyPort = comboBox1.SelectedItem.ToString();
             label1.Text = wybranyPort;
             UstawieniaSerial(serial, wybranyPort);
-            serial.Open();
             _continue = true;
             /// ramka danych
             ///
@@ -78,16 +77,19 @@ namespace Tester_Mod_Adaptation
             }
             ramka.AdresUrzadzenia = "0xff";//adres tma
             ramka.NrKomendy = "0x01";//Komenda test pin
+            ramka.kontrolaDanych = "0x2868";//poprawnosc danych
             DaneDoWys.Append(ramka.AdresUrzadzenia);
             DaneDoWys.Append(ramka.NrKomendy);
-            serial.WriteLine("0xff");//
-
-
-
-
-
-
+            DaneDoWys.Append(ramka.kontrolaDanych);
+            serial.Open();
+            serial.WriteLine(DaneDoWys.ToString());//
             readThread.Start();
+
+
+
+
+
+            
 
 
 

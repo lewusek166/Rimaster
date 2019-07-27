@@ -23,7 +23,7 @@ namespace Tester_Mod_Adaptation
         {
             FormBorderStyle = FormBorderStyle.Sizable;
             WindowState = FormWindowState.Maximized;
-            TopMost = true;
+            //TopMost = true;
         }
 
         private void TableLayoutPanel2_Paint(object sender, PaintEventArgs e)

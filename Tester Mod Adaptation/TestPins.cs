@@ -56,8 +56,8 @@ namespace Tester_Mod_Adaptation
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            
-            SerialPort serial=new SerialPort();
+
+            SerialPort serial = new SerialPort();
             StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
             Thread readThread = new Thread(Read);
             String wybranyPort = comboBox1.SelectedItem.ToString();
@@ -67,8 +67,8 @@ namespace Tester_Mod_Adaptation
             serial.WriteTimeout = 500;
             serial.Open();
             _continue = true;
-            
-           
+
+
 
 
 
@@ -83,14 +83,14 @@ namespace Tester_Mod_Adaptation
             readThread.Join();
             serial.Close();
 
-             void Read()
+            void Read()
             {
                 while (_continue)
                 {
                     try
                     {
                         string message = serial.ReadLine();
-                        
+
                     }
                     catch (TimeoutException) { }
                 }
@@ -100,5 +100,6 @@ namespace Tester_Mod_Adaptation
 
 
             }
+        }
     }
 }

@@ -16,12 +16,13 @@ namespace Tester_Mod_Adaptation
     {
         struct Ramka
         {
-            String AdresUrzadzenia;
-            String NrKomendy;
-            String kontrolaDanych;
-            String[] Dane;
-        }
+            public string AdresUrzadzenia;
+            public string NrKomendy;
+            public string kontrolaDanych;
+            public string[] Dane;
+        };
 
+        public StringBuilder DaneDoWys;
         public static bool _continue;
         public TestPins()
         {
@@ -62,12 +63,24 @@ namespace Tester_Mod_Adaptation
             Thread readThread = new Thread(Read);
             String wybranyPort = comboBox1.SelectedItem.ToString();
             label1.Text = wybranyPort;
-            serial.PortName = wybranyPort;
-            serial.ReadTimeout = 500;
-            serial.WriteTimeout = 500;
+            UstawieniaSerial(serial, wybranyPort);
             serial.Open();
             _continue = true;
+            /// ramka danych
+            ///
 
+            Ramka ramka= new Ramka();
+          
+            ramka.Dane = new string[51];//kazdy pin ma swój odpowiednik w tablicy 
+            for(int i = 1; i < 51; i++)//ustawinie wszystkich komorek na 0 ,1 to aktywny pin 
+            {
+                ramka.Dane[i] = "0x00";
+            }
+            ramka.AdresUrzadzenia = "0xff";//adres tma
+            ramka.NrKomendy = "0x01";//Komenda test pin
+            DaneDoWys.Append(ramka.AdresUrzadzenia);
+            DaneDoWys.Append(ramka.NrKomendy);
+            serial.WriteLine("0xff");//
 
 
 
@@ -100,6 +113,14 @@ namespace Tester_Mod_Adaptation
 
 
             }
+
+        }
+        public static void UstawieniaSerial(SerialPort serial, String wybranyPort)
+        {
+            serial.PortName = wybranyPort;
+            serial.ReadTimeout = 500;
+            serial.WriteTimeout = 500;
+            
         }
     }
 }

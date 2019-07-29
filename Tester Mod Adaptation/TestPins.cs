@@ -16,10 +16,10 @@ namespace Tester_Mod_Adaptation
     {
         struct Ramka
         {
-            public String AdresUrzadzenia;
-            public String NrKomendy;
-            public String kontrolaDanych;
-            public String Dane;
+            public Byte  AdresUrzadzenia;
+            public byte NrKomendy;
+            public byte kontrolaDanych;
+            public byte Dane;
         };
 
         public StringBuilder DaneDoWys;
@@ -64,28 +64,71 @@ namespace Tester_Mod_Adaptation
             serial.WriteTimeout = 500;
             
         }
+        void WskazPin(Ramka ramka)
+        {
+            if (ramka.Dane == 0x01) { p1.BackColor = Color.Green; } //else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x02) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x03) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x04) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x05) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x06) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x07) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x08) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x09) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x10) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x11) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x12) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x13) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x14) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x15) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x16) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x17) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x18) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x19) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x20) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x21) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x22) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x23) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x24) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x25) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x26) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x27) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x28) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x29) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x30) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x31) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x32) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x33) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x34) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x35) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x36) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x37) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x38) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x39) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x40) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x41) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x42) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x43) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x44) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x45) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x46) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x47) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x48) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x49) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+            if (ramka.Dane == 0x50) { p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
+        }
          void OdbiorDanych(Ramka ramka)
         {
             ///kontrola danych
-            if(ramka.AdresUrzadzenia=="0xf0\r")
+            if(ramka.AdresUrzadzenia==0xf0)
             { 
-                if (ramka.kontrolaDanych=="0x68\r")
+                if (ramka.kontrolaDanych==0x68)
                  {
                 label1.Text = "Connection is ok !!!";
-                    if (ramka.Dane == "0x01/r")
-                    {
-                        p1.BackColor = Color.Green;
-                    }
-                  }
+                    WskazPin(ramka);
+                }
             }
-            else
-            {
-                button1.BackColor = Color.Red;
-                label1.Text = "Error DATA";
-                _continue = false;
-                
-                
-            }
+            
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -93,17 +136,7 @@ namespace Tester_Mod_Adaptation
             Ramka ramka = new Ramka();
             DaneDoWys = new StringBuilder();
             SerialPort serial = new SerialPort();
-            StringComparer StringComparer = StringComparer.OrdinalIgnoreCase;
-           
             string portnazwa;
-            
-
-            foreach (string s in SerialPort.GetPortNames())
-            {
-                portnazwa = s;
-
-                UstawieniaSerial(serial, s);
-            }
             while (serial.IsOpen == false)
             {
                 try
@@ -115,22 +148,24 @@ namespace Tester_Mod_Adaptation
                     }
                     serial.Open();
                 }
-                catch (Exception) { }
+                catch (Exception)
+                {
+                    MessageBox.Show("Serial port name is not corectly", "ERROR", MessageBoxButtons.OKCancel,MessageBoxIcon.Error);
+                }
             }
           
             _continue = true;
             /// ramka danych
-            ramka.Dane = "0x00";
-            ramka.AdresUrzadzenia = "0xff";//adres tma
-            ramka.NrKomendy = "0x01";//Komenda test pin
-            ramka.kontrolaDanych = "0x68";//poprawnosc danych
+
+            ramka.AdresUrzadzenia = 0xff;//adres tma
+            ramka.NrKomendy = 0x01;//Komenda test pin 0x02 izoltion test czyli do drugiegookn 0x03 resistor test 
+            ramka.kontrolaDanych = 0x68;//poprawnosc danych
             _ = DaneDoWys.Append(ramka.AdresUrzadzenia);
             _ = DaneDoWys.Append(ramka.NrKomendy);
             _ = DaneDoWys.Append(ramka.kontrolaDanych);
 
-
             serial.WriteLine("1");
-            //String d = serial.ReadLine();
+           
             Read();
             serial.Close();
 
@@ -139,16 +174,14 @@ namespace Tester_Mod_Adaptation
                 
                 while (_continue)
                 {
-                    //if (serial.Read.Equals(0) { }
+                   
                     try
                     {
-                        
-                        ramka.AdresUrzadzenia = serial.ReadLine();
-                        ramka.Dane = serial.ReadLine();
-                        ramka.kontrolaDanych = serial.ReadLine();
+
+                        ramka.AdresUrzadzenia = (byte) serial.ReadByte();
+                        ramka.Dane = (byte)serial.ReadByte();
+                        ramka.kontrolaDanych = (byte)serial.ReadByte();
                         OdbiorDanych(ramka);
-                        
-                       
 
                     }
                     catch (TimeoutException) { }

@@ -16,17 +16,19 @@ namespace Tester_Mod_Adaptation
     {
         struct Ramka
         {
-            public string AdresUrzadzenia;
-            public string NrKomendy;
-            public string kontrolaDanych;
-            public string Dane;
+            public String AdresUrzadzenia;
+            public String NrKomendy;
+            public String kontrolaDanych;
+            public String Dane;
         };
 
         public StringBuilder DaneDoWys;
         public static bool _continue;
+
         public TestPins()
         {
             InitializeComponent();
+           
         }
 
         private void TestPins_Load(object sender, EventArgs e)
@@ -34,7 +36,7 @@ namespace Tester_Mod_Adaptation
 
             FormBorderStyle = FormBorderStyle.Sizable;
             WindowState = FormWindowState.Maximized;
-            comboBox1.Text = "--Select--";
+           
         }
 
         private void Button3_Click(object sender, EventArgs e)
@@ -55,24 +57,69 @@ namespace Tester_Mod_Adaptation
 
         }
 
+        void UstawieniaSerial(SerialPort serial, String wybranyPort)
+        {
+            serial.PortName = wybranyPort;
+            serial.ReadTimeout = 5000;
+            serial.WriteTimeout = 500;
+            
+        }
+         void OdbiorDanych(Ramka ramka)
+        {
+            ///kontrola danych
+            if(ramka.AdresUrzadzenia=="0xf0\r")
+            { 
+                if (ramka.kontrolaDanych=="0x68\r")
+                 {
+                label1.Text = "Connection is ok !!!";
+                    if (ramka.Dane == "0x01/r")
+                    {
+                        p1.BackColor = Color.Green;
+                    }
+                  }
+            }
+            else
+            {
+                button1.BackColor = Color.Red;
+                label1.Text = "Error DATA";
+                _continue = false;
+                
+                
+            }
+        }
+
         private void Button1_Click(object sender, EventArgs e)
         {
-            Ramka ramka= new Ramka();
+            Ramka ramka = new Ramka();
             DaneDoWys = new StringBuilder();
             SerialPort serial = new SerialPort();
-            StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
-            Thread readThread = new Thread(Read);
-            string wybranyPort = comboBox1.SelectedItem.ToString();
-            label1.Text = wybranyPort;
-            UstawieniaSerial(serial, wybranyPort);
+            StringComparer StringComparer = StringComparer.OrdinalIgnoreCase;
+           
+            string portnazwa;
+            
+
+            foreach (string s in SerialPort.GetPortNames())
+            {
+                portnazwa = s;
+
+                UstawieniaSerial(serial, s);
+            }
+            while (serial.IsOpen == false)
+            {
+                try
+                {
+                    foreach (string s in SerialPort.GetPortNames())
+                    {
+                        portnazwa = s;
+                        UstawieniaSerial(serial, s);
+                    }
+                    serial.Open();
+                }
+                catch (Exception) { }
+            }
+          
             _continue = true;
             /// ramka danych
-            ///
-
-
-
-
-
             ramka.Dane = "0x00";
             ramka.AdresUrzadzenia = "0xff";//adres tma
             ramka.NrKomendy = "0x01";//Komenda test pin
@@ -80,57 +127,38 @@ namespace Tester_Mod_Adaptation
             _ = DaneDoWys.Append(ramka.AdresUrzadzenia);
             _ = DaneDoWys.Append(ramka.NrKomendy);
             _ = DaneDoWys.Append(ramka.kontrolaDanych);
-            serial.Open();
-            serial.WriteLine(DaneDoWys.ToString());//wysyłamy całą 
-            readThread.Start();
-            readThread.Join();
+
+
+            serial.WriteLine("1");
+            //String d = serial.ReadLine();
+            Read();
             serial.Close();
 
             void Read()
             {
+                
                 while (_continue)
                 {
+                    //if (serial.Read.Equals(0) { }
                     try
                     {
-                       ramka.AdresUrzadzenia= serial.ReadLine();
-                       ramka.NrKomendy = serial.ReadLine();
-                       ramka.Dane = serial.ReadLine();
-                       ramka.kontrolaDanych = serial.ReadLine();
+                        
+                        ramka.AdresUrzadzenia = serial.ReadLine();
+                        ramka.Dane = serial.ReadLine();
+                        ramka.kontrolaDanych = serial.ReadLine();
+                        OdbiorDanych(ramka);
+                        
+                       
 
                     }
                     catch (TimeoutException) { }
                 }
 
-
-
-
-
-            }
-
-        }
-        void UstawieniaSerial(SerialPort serial, String wybranyPort)
-        {
-            serial.PortName = wybranyPort;
-            serial.ReadTimeout = 500;
-            serial.WriteTimeout = 500;
-            
-        }
-         void OdbiorDanych(Ramka ramka)
-        {
-            ///kontrola danych
-            if (ramka.kontrolaDanych == "68")
-            {
                 
-            }else
-            {
 
-                button1.BackColor = Color.Red;
-                label1.AutoSize = true;
-                label1.Text = "Connection Error " +
-                    "Select the correct port COM";
+
+
             }
         }
-
-    
     }
 }

@@ -13,30 +13,30 @@ namespace Tester_Mod_Adaptation
 {
     public partial class Polaczenia : Form
     {
+        String[] NPin;
         public Polaczenia()
         {
             InitializeComponent();
-
+            NPin = new string[50];
         }
 
         private void Polaczenia_Load(object sender, EventArgs e)
         {
             FormBorderStyle = FormBorderStyle.Sizable;
             WindowState = FormWindowState.Maximized;
-            //TopMost = true;
+            for (int i = 1; i < 51; i++)
+            {
+                dataGridView1.Rows.Add(i, "");
+                dataGridView2.Rows.Add("", "");
+            }
         }
 
         private void TableLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
             
-            for (int i = 1; i < 51; i++)
-            {
-                dataGridView1.Rows.Add(i, "");
-                dataGridView2.Rows.Add("","");
-            }
+           
         }
 
-       
         private void DataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode==Keys.Delete)
@@ -51,7 +51,6 @@ namespace Tester_Mod_Adaptation
             }
         }
 
-
         private void DataGridView2_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
@@ -65,8 +64,6 @@ namespace Tester_Mod_Adaptation
                 PasteClipboard(dataGridView2);
             }
         }
-
-
 
         private void PasteClipboard(DataGridView grid)
         {
@@ -116,11 +113,6 @@ namespace Tester_Mod_Adaptation
             }
         }
 
-        private void TableLayoutPanel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void Button3_Click(object sender, EventArgs e)
         {
             
@@ -137,6 +129,15 @@ namespace Tester_Mod_Adaptation
             this.Close();
             Connection connection = new Connection();
             connection.Visible = true;
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(dataGridView1.SelectedCells[1].C);
+           // for(int i = 0; i < 50; i++)
+           // {
+           //     NPin[i] = (string)dataGridView1.SelectedRows[1].Cells[1].Value;
+           // }
         }
     }
 

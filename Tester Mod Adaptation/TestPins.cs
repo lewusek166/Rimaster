@@ -32,26 +32,6 @@ namespace Tester_Mod_Adaptation
             WindowState = FormWindowState.Maximized;
 
         }
-
-        private void Button3_Click(object sender, EventArgs e)
-        {
-            DialogResult result;
-            result = MessageBox.Show("Exit Aplication ?", "", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
-        }
-
-        private void Button4_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Connection connection = new Connection();
-            connection.Visible = true;
-            backgroundWorker1.CancelAsync();
-
-        }
-
         void UstawieniaSerial(SerialPort serial, String wybranyPort)
         {
             serial.PortName = wybranyPort;
@@ -59,7 +39,6 @@ namespace Tester_Mod_Adaptation
             serial.WriteTimeout = 500;
 
         }
-
         void kolor()
         {
             if(message.Equals("1\r")){ p1.BackColor = Color.Green; } else { p1.BackColor = Color.Coral; }
@@ -123,21 +102,15 @@ namespace Tester_Mod_Adaptation
                 {
                     foreach (string s in SerialPort.GetPortNames())
                     {
-
                         UstawieniaSerial(serial, s);
                         label1.Text = s;
-                        serial.Open();
                     }
-
+                serial.Open();
                 }
                 catch (Exception)
                 {
-                    DialogResult result = MessageBox.Show("Serial port name is not corectly", "ERROR", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                    if (result == DialogResult.Cancel)
-                    {
-                        serial.Close();
-
-                    }
+                   MessageBox.Show("Serial port name is not corectly", "ERROR", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                  
                 }
             }
             backgroundWorker1.RunWorkerAsync();
@@ -158,6 +131,23 @@ namespace Tester_Mod_Adaptation
             }
         }
 
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            DialogResult result;
+            result = MessageBox.Show("Exit Aplication ?", "", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
 
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Connection connection = new Connection();
+            connection.Visible = true;
+            _continue = false;
+            backgroundWorker1.CancelAsync();
+        }
     }
 }

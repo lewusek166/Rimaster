@@ -1029,6 +1029,8 @@
             // 
             // backgroundWorker1
             // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
             // 
             // TestPins
@@ -1129,6 +1131,6 @@
         private System.Windows.Forms.Button p21;
         private System.Windows.Forms.Button p11;
         private System.Windows.Forms.Button p1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        public System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

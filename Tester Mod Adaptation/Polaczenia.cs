@@ -133,11 +133,42 @@ namespace Tester_Mod_Adaptation
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(dataGridView1.SelectedCells[1].C);
-           // for(int i = 0; i < 50; i++)
-           // {
-           //     NPin[i] = (string)dataGridView1.SelectedRows[1].Cells[1].Value;
-           // }
+            bool kontrol = true;
+            char[] charsToTrim = { '\r', ' ', '\'' };//usuwanie znakow nie potrzebnych w nazwach 
+            String result;
+            for (int i = 0; i < 50; i++)
+             {
+                 result= (string)dataGridView1.Rows[i].Cells[1].Value;
+                NPin[i] = result.Trim(charsToTrim);
+             }//pobranie danych do stringa z data grid
+
+            for(int i = 0; i < 50; i++)
+            {
+                for(int k = i+1; k < 50; k++)
+                {
+                    if (NPin[i] == NPin[k] && NPin[i] != "")
+                    {
+                        kontrol = false;
+                        dataGridView1.Rows[i].Cells[1].Style.BackColor = Color.Red;
+                        dataGridView1.Rows[k].Cells[1].Style.BackColor = Color.Red;
+                    }
+
+                } 
+                    
+
+                
+            }  //sprawdzenie czy nie ma takich samych nazw
+            if (kontrol == false)
+            {
+                MessageBox.Show("Name Pins isn't correctly ", "ERROR", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }else
+            {
+                for(int i = 0; i < 50; i++)
+                {
+                    dataGridView1.Rows[i].Cells[1].Style.BackColor = Color.GreenYellow;
+                }
+
+            }
         }
     }
 

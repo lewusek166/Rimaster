@@ -109,7 +109,7 @@ namespace Tester_Mod_Adaptation
                 }
                 catch (Exception)
                 {
-                   MessageBox.Show("Serial port name is not corectly", "ERROR", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                   MessageBox.Show("Serial port name isn't correctly", "ERROR", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                   
                 }
             }

@@ -113,6 +113,8 @@ namespace Tester_Mod_Adaptation
                   
                 }
             }
+            
+            serial.Write("1");
             backgroundWorker1.RunWorkerAsync();
         }
 

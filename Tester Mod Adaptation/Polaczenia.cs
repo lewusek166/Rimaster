@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,25 @@ namespace Tester_Mod_Adaptation
 {
     public partial class Polaczenia : Form
     {
-        String[] NPin;
+        public String[] NPin;
+        public String[,] PolTMT;
+        SerialPort serial;
+        bool _continue;
+        string message;
         public Polaczenia()
         {
             InitializeComponent();
             NPin = new string[50];
+            PolTMT = new string[50,50];
+            for(int i = 0; i < 50; i++)//czyszczenie tablic 
+            {
+                NPin[i] = "";
+                for(int k = 0; k < 50; k++)
+                {
+                    PolTMT[i,k] = "";
+                }
+                
+            }
         }
 
         private void Polaczenia_Load(object sender, EventArgs e)
@@ -30,13 +45,6 @@ namespace Tester_Mod_Adaptation
                 dataGridView2.Rows.Add("", "");
             }
         }
-
-        private void TableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-            
-           
-        }
-
         private void DataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode==Keys.Delete)
@@ -166,10 +174,71 @@ namespace Tester_Mod_Adaptation
                 for(int i = 0; i < 50; i++)
                 {
                     dataGridView1.Rows[i].Cells[1].Style.BackColor = Color.GreenYellow;
+                   
                 }
 
             }
         }
-    }
 
+        void UstawieniaSerial(SerialPort serial, String wybranyPort)
+        {
+            serial.PortName = wybranyPort;
+            serial.ReadTimeout = 500;
+            serial.WriteTimeout = 500;
+
+        }
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            _continue = true;
+            serial = new SerialPort();
+            while (serial.IsOpen == false)
+            {
+                try
+                {
+                    foreach (string s in SerialPort.GetPortNames())
+                    {
+                        UstawieniaSerial(serial, s);
+                        label1.Text = s;
+                    }
+                    serial.Open();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Serial port name isn't correctly", "ERROR", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+
+                }
+            }
+
+            serial.Write("2");
+            backgroundWorker1.RunWorkerAsync();
+           // serial.Close();
+        }
+
+        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            int i = 0;
+            while (_continue)
+            {
+                try
+                {
+                    message = serial.ReadLine();
+                   
+                    char[] charsToTrim = { '\r', ' ', '\'' };//usuwanie znakow nie potrzebnych w nazwach 
+                    String result;
+                    result = message;
+                    message = result.Trim(charsToTrim);
+                  // PolTMT[i, i] = message.Split('-');
+                    i++;
+                    if (i == 50)
+                    {
+                        i = 0;
+                    }
+                }
+                catch (TimeoutException) { }
+
+            }
+        }
+    }
 }
+
+

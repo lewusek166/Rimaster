@@ -19,20 +19,23 @@ namespace Tester_Mod_Adaptation
         SerialPort serial;
         bool _continue;
         string message;
+        int IsplitA,IsplitB;
+
         public Polaczenia()
         {
             InitializeComponent();
             NPin = new string[50];
-            PolTMT = new string[50,50];
+            PolTMT = new string[50,2];
             for(int i = 0; i < 50; i++)//czyszczenie tablic 
             {
                 NPin[i] = "";
-                for(int k = 0; k < 50; k++)
+                for(int k = 0; k < 2; k++)
                 {
                     PolTMT[i,k] = "";
                 }
                 
             }
+           
         }
 
         private void Polaczenia_Load(object sender, EventArgs e)
@@ -199,6 +202,7 @@ namespace Tester_Mod_Adaptation
                     {
                         UstawieniaSerial(serial, s);
                         label1.Text = s;
+                        label1.BackColor = Color.LightGray;
                     }
                     serial.Open();
                 }
@@ -216,22 +220,28 @@ namespace Tester_Mod_Adaptation
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            int i = 0;
+            IsplitA = 0;
+          
             while (_continue)
             {
                 try
                 {
                     message = serial.ReadLine();
-                   
-                    char[] charsToTrim = { '\r', ' ', '\'' };//usuwanie znakow nie potrzebnych w nazwach 
+                    IsplitB = 0;
+                    char[] charsToTrim = { '\r', ' ', ' ', '\'' };//usuwanie znakow niepotrzebnych w nazwach 
                     String result;
                     result = message;
                     message = result.Trim(charsToTrim);
-                  // PolTMT[i, i] = message.Split('-');
-                    i++;
-                    if (i == 50)
+                    string[] split = message.Split('-'); 
+                    foreach (var item in split)
                     {
-                        i = 0;
+                        PolTMT[IsplitA , IsplitB] = item;
+                        IsplitB++;
+                    }
+                    IsplitA++;
+                    if (IsplitA == 50)
+                    {
+                        IsplitA = 0;
                     }
                 }
                 catch (TimeoutException) { }

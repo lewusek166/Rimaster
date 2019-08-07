@@ -14,7 +14,6 @@ namespace Tester_Mod_Adaptation
 {
     public partial class Polaczenia : Form
     {
-        public String[] NPin;
         public String[,] PolTMT;
         SerialPort serial;
         bool _continue;
@@ -24,17 +23,17 @@ namespace Tester_Mod_Adaptation
         public Polaczenia()
         {
             InitializeComponent();
-            NPin = new string[50];
+
             PolTMT = new string[50,2];
             for(int i = 0; i < 50; i++)//czyszczenie tablic 
             {
-                NPin[i] = "";
+               
                 for(int k = 0; k < 2; k++)
                 {
                     PolTMT[i,k] = "";
                 }
                 
-            }
+            }//czyszczenie tablicy 
            
         }
 
@@ -150,14 +149,14 @@ namespace Tester_Mod_Adaptation
             for (int i = 0; i < 50; i++)
              {
                  result= (string)dataGridView1.Rows[i].Cells[1].Value;
-                NPin[i] = result.Trim(charsToTrim);
+                dataGridView1.Rows[i].Cells[1].Value= result.Trim(charsToTrim);
              }//pobranie danych do stringa z data grid
 
             for(int i = 0; i < 50; i++)
             {
                 for(int k = i+1; k < 50; k++)
                 {
-                    if (NPin[i] == NPin[k] && NPin[i] != "")
+                    if (dataGridView1.Rows[i].Cells[1].Value.ToString() == dataGridView1.Rows[k].Cells[1].Value.ToString() && (string)dataGridView1.Rows[i].Cells[1].Value != "")
                     {
                         kontrol = false;
                         dataGridView1.Rows[i].Cells[1].Style.BackColor = Color.Red;
@@ -176,7 +175,13 @@ namespace Tester_Mod_Adaptation
             {
                 for(int i = 0; i < 50; i++)
                 {
-                    dataGridView1.Rows[i].Cells[1].Style.BackColor = Color.GreenYellow;
+                    if (dataGridView1.Rows[i].Cells[1].Value.Equals(""))
+                    { }
+                    else
+                    {
+                        dataGridView1.Rows[i].Cells[1].Style.BackColor = Color.GreenYellow;
+                    }
+                    
                    
                 }
 
@@ -218,6 +223,87 @@ namespace Tester_Mod_Adaptation
            // serial.Close();
         }
 
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            string result;
+            char charsToTrim = ' ';
+            bool istniejeA = false, istniejeB = false;
+            bool bledy = false;
+            ///czyszczenie białych znaków
+            for (int i = 0; i < 50; i++)
+            {
+                for(int k = 0; k < 50; k++)
+                {
+                    for(int z = 0; z < 2; z++)
+                    {
+                        if (dataGridView1.Rows[i].Cells[1].Value.Equals(""))
+                        { }
+                        else
+                        { 
+                            result = (string)dataGridView1.Rows[i].Cells[1].Value;
+                            dataGridView1.Rows[i].Cells[1].Value = result.Trim(charsToTrim);
+                            result = (string)dataGridView2.Rows[k].Cells[z].Value;
+                            dataGridView2.Rows[k].Cells[z].Value = result.Trim(charsToTrim);
+
+                        }
+                    }
+                   
+                }
+            }
+            ///sprawdzenie czy w danym polaczeniu nie ma tych samych pinow 
+            for(int i = 0; i < 50; i++)
+            {
+                if (dataGridView2.Rows[i].Cells[0].Value.ToString()==dataGridView2.Rows[i].Cells[1].Value.ToString()&& dataGridView2.Rows[i].Cells[0].Value.ToString() != "")
+                {
+
+                        dataGridView2.Rows[i].Cells[0].Style.BackColor = Color.Red;
+                        dataGridView2.Rows[i].Cells[1].Style.BackColor = Color.Red;
+                        bledy = true;
+
+                }
+            }
+            /// sprawdzenie czy polaczenia są zawarte w liscie pinow 
+            if (bledy == false)
+            {
+                for(int i = 0; i < 50; i++)
+                 {
+                    istniejeA = false;
+                    istniejeB = false;
+                    for(int z = 0; z < 50; z++)
+                    {
+                        if (dataGridView2.Rows[i].Cells[0].Value.ToString()!="" && dataGridView1.Rows[z].Cells[1].Value.ToString()!="")//ominięcie pustych miejsc
+                        {
+                            if (dataGridView2.Rows[i].Cells[0].Value.ToString() == dataGridView1.Rows[z].Cells[1].Value.ToString())
+                            {
+                                istniejeA = true;
+                                dataGridView2.Rows[i].Cells[0].Style.BackColor = Color.GreenYellow;
+                            }
+                        }
+                        if (dataGridView2.Rows[i].Cells[1].Value.ToString() != "" && dataGridView1.Rows[z].Cells[1].Value.ToString() != "")//ominięcie pustych miejsc
+                        {
+                            if (dataGridView2.Rows[i].Cells[1].Value.ToString() == dataGridView1.Rows[z].Cells[1].Value.ToString())
+                            {
+                                istniejeB = true;
+                                dataGridView2.Rows[i].Cells[1].Style.BackColor = Color.GreenYellow;
+                            }
+                        }
+
+                    }
+                   if (istniejeA == false && dataGridView2.Rows[i].Cells[0].Value.ToString() != "")
+                   {
+                       dataGridView2.Rows[i].Cells[0].Style.BackColor = Color.Red;
+                   }
+                    if (istniejeB == false && dataGridView2.Rows[i].Cells[1].Value.ToString() != "")
+                    {
+                        dataGridView2.Rows[i].Cells[1].Style.BackColor = Color.Red;
+                    }
+                }
+            
+            }
+
+           
+        }
+
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             IsplitA = 0;
@@ -228,14 +314,16 @@ namespace Tester_Mod_Adaptation
                 {
                     message = serial.ReadLine();
                     IsplitB = 0;
-                    char[] charsToTrim = { '\r', ' ', ' ', '\'' };//usuwanie znakow niepotrzebnych w nazwach 
+                    char[] charsToTrim = { '\r', ' ', '\'' };//usuwanie znakow niepotrzebnych w nazwach 
                     String result;
                     result = message;
                     message = result.Trim(charsToTrim);
                     string[] split = message.Split('-'); 
                     foreach (var item in split)
                     {
-                        PolTMT[IsplitA , IsplitB] = item;
+                        result = item;
+                        result = result.Trim(charsToTrim);
+                        PolTMT[IsplitA , IsplitB] = result;
                         IsplitB++;
                     }
                     IsplitA++;

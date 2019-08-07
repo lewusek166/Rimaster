@@ -169,8 +169,8 @@ namespace Tester_Mod_Adaptation
                 
             }  //sprawdzenie czy nie ma takich samych nazw
             if (kontrol == false)
-            {
-                MessageBox.Show("Name Pins isn't correctly ", "ERROR", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            {   
+                MessageBox.Show("Name Pins isn't correctly!!! ", "ERROR", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }else
             {
                 for(int i = 0; i < 50; i++)
@@ -227,8 +227,10 @@ namespace Tester_Mod_Adaptation
         {
             string result;
             char charsToTrim = ' ';
-            bool istniejeA = false, istniejeB = false;
+            bool istniejeA = false;
+            bool istniejeB = false;
             bool bledy = false;
+            bool kontrola = true;
             ///czyszczenie białych znaków
             for (int i = 0; i < 50; i++)
             {
@@ -291,12 +293,18 @@ namespace Tester_Mod_Adaptation
                     }
                    if (istniejeA == false && dataGridView2.Rows[i].Cells[0].Value.ToString() != "")
                    {
+                        kontrola = false;
                        dataGridView2.Rows[i].Cells[0].Style.BackColor = Color.Red;
                    }
                     if (istniejeB == false && dataGridView2.Rows[i].Cells[1].Value.ToString() != "")
                     {
+                        kontrola = false;
                         dataGridView2.Rows[i].Cells[1].Style.BackColor = Color.Red;
                     }
+                }
+                if (kontrola == false)
+                {
+                    MessageBox.Show("Wire isn't correctly!!! ", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             
             }

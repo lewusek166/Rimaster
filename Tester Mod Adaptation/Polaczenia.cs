@@ -217,7 +217,7 @@ namespace Tester_Mod_Adaptation
                     DialogResult dialog= MessageBox.Show("Serial port name isn't correctly or TMT does't connected", "ERROR", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                     if (dialog == DialogResult.Cancel)
                     {
-                        backgroundWorker1.CancelAsync();////////////////////////////////////do poprawy 
+                        backgroundWorker1.CancelAsync();////////////////////////////////////do poprawy  
                         this.Visible = false;
                     }
                 }

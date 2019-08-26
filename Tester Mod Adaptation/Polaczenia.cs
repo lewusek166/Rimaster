@@ -163,10 +163,11 @@ namespace Tester_Mod_Adaptation
                         dataGridView1.Rows[k].Cells[1].Style.BackColor = Color.Red;
                     }
 
-                } 
-                    
+                }
 
-                
+               
+                button2.Enabled = true;
+
             }  //sprawdzenie czy nie ma takich samych nazw
             if (kontrol == false)
             {   
@@ -207,14 +208,18 @@ namespace Tester_Mod_Adaptation
                     {
                         UstawieniaSerial(serial, s);
                         label1.Text = s;
-                        label1.BackColor = Color.LightGray;
+                        label1.BackColor = Color.LawnGreen;
                     }
                     serial.Open();
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Serial port name isn't correctly", "ERROR", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-
+                    DialogResult dialog= MessageBox.Show("Serial port name isn't correctly or TMT does't connected", "ERROR", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                    if (dialog == DialogResult.Cancel)
+                    {
+                        backgroundWorker1.CancelAsync();////////////////////////////////////do poprawy 
+                        this.Visible = false;
+                    }
                 }
             }
 
@@ -223,7 +228,7 @@ namespace Tester_Mod_Adaptation
            // serial.Close();
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        private void Button2_Click_1(object sender, EventArgs e)
         {
             string result;
             char charsToTrim = ' ';
@@ -234,14 +239,14 @@ namespace Tester_Mod_Adaptation
             ///czyszczenie białych znaków
             for (int i = 0; i < 50; i++)
             {
-                for(int k = 0; k < 50; k++)
+                for (int k = 0; k < 50; k++)
                 {
-                    for(int z = 0; z < 2; z++)
+                    for (int z = 0; z < 2; z++)
                     {
                         if (dataGridView1.Rows[i].Cells[1].Value.Equals(""))
                         { }
                         else
-                        { 
+                        {
                             result = (string)dataGridView1.Rows[i].Cells[1].Value;
                             dataGridView1.Rows[i].Cells[1].Value = result.Trim(charsToTrim);
                             result = (string)dataGridView2.Rows[k].Cells[z].Value;
@@ -249,31 +254,31 @@ namespace Tester_Mod_Adaptation
 
                         }
                     }
-                   
+
                 }
             }
             ///sprawdzenie czy w danym polaczeniu nie ma tych samych pinow 
-            for(int i = 0; i < 50; i++)
+            for (int i = 0; i < 50; i++)
             {
-                if (dataGridView2.Rows[i].Cells[0].Value.ToString()==dataGridView2.Rows[i].Cells[1].Value.ToString()&& dataGridView2.Rows[i].Cells[0].Value.ToString() != "")
+                if (dataGridView2.Rows[i].Cells[0].Value.ToString() == dataGridView2.Rows[i].Cells[1].Value.ToString() && dataGridView2.Rows[i].Cells[0].Value.ToString() != "")
                 {
 
-                        dataGridView2.Rows[i].Cells[0].Style.BackColor = Color.Red;
-                        dataGridView2.Rows[i].Cells[1].Style.BackColor = Color.Red;
-                        bledy = true;
+                    dataGridView2.Rows[i].Cells[0].Style.BackColor = Color.Red;
+                    dataGridView2.Rows[i].Cells[1].Style.BackColor = Color.Red;
+                    bledy = true;
 
                 }
             }
             /// sprawdzenie czy polaczenia są zawarte w liscie pinow 
             if (bledy == false)
             {
-                for(int i = 0; i < 50; i++)
-                 {
+                for (int i = 0; i < 50; i++)
+                {
                     istniejeA = false;
                     istniejeB = false;
-                    for(int z = 0; z < 50; z++)
+                    for (int z = 0; z < 50; z++)
                     {
-                        if (dataGridView2.Rows[i].Cells[0].Value.ToString()!="" && dataGridView1.Rows[z].Cells[1].Value.ToString()!="")//ominięcie pustych miejsc
+                        if (dataGridView2.Rows[i].Cells[0].Value.ToString() != "" && dataGridView1.Rows[z].Cells[1].Value.ToString() != "")//ominięcie pustych miejsc
                         {
                             if (dataGridView2.Rows[i].Cells[0].Value.ToString() == dataGridView1.Rows[z].Cells[1].Value.ToString())
                             {
@@ -291,11 +296,11 @@ namespace Tester_Mod_Adaptation
                         }
 
                     }
-                   if (istniejeA == false && dataGridView2.Rows[i].Cells[0].Value.ToString() != "")
-                   {
+                    if (istniejeA == false && dataGridView2.Rows[i].Cells[0].Value.ToString() != "")
+                    {
                         kontrola = false;
-                       dataGridView2.Rows[i].Cells[0].Style.BackColor = Color.Red;
-                   }
+                        dataGridView2.Rows[i].Cells[0].Style.BackColor = Color.Red;
+                    }
                     if (istniejeB == false && dataGridView2.Rows[i].Cells[1].Value.ToString() != "")
                     {
                         kontrola = false;
@@ -305,11 +310,20 @@ namespace Tester_Mod_Adaptation
                 if (kontrola == false)
                 {
                     MessageBox.Show("Wire isn't correctly!!! ", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                  
+                }else
+                {
+                button5.Enabled = true;
+                button6.Enabled = true;
                 }
-            
-            }
 
-           
+            }
+            
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)

@@ -15,6 +15,7 @@ namespace Tester_Mod_Adaptation
     public partial class Polaczenia : Form
     {
         public String[,] PolTMT;
+        public String[,] NazwyTMT;
         SerialPort serial;
         bool _continue;
         string message;
@@ -25,15 +26,17 @@ namespace Tester_Mod_Adaptation
             InitializeComponent();
 
             PolTMT = new string[50,2];
+            NazwyTMT = new string[50, 2];
             for(int i = 0; i < 50; i++)//czyszczenie tablic 
             {
                
                 for(int k = 0; k < 2; k++)
                 {
                     PolTMT[i,k] = "";
+                    NazwyTMT[i, k] = "";
                 }
                 
-            }//czyszczenie tablicy 
+            }//czyszczenie tablic 
            
         }
 
@@ -41,6 +44,7 @@ namespace Tester_Mod_Adaptation
         {
             FormBorderStyle = FormBorderStyle.Sizable;
             WindowState = FormWindowState.Maximized;
+            TopMost = true;
             for (int i = 1; i < 51; i++)
             {
                 dataGridView1.Rows.Add(i, "");
@@ -217,8 +221,13 @@ namespace Tester_Mod_Adaptation
                     DialogResult dialog= MessageBox.Show("Serial port name isn't correctly or TMT does't connected", "ERROR", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                     if (dialog == DialogResult.Cancel)
                     {
+                       
                         backgroundWorker1.CancelAsync();////////////////////////////////////do poprawy  
                         this.Visible = false;
+                        Application.Exit();
+                        this.Close();
+                        serial.Close();
+                        
                     }
                 }
             }
@@ -323,6 +332,38 @@ namespace Tester_Mod_Adaptation
 
         private void Button5_Click(object sender, EventArgs e)
         {
+            ///Przetwozenie nazw pinów 
+           for(int i = 0; i < 50; i++)
+            {
+              for(int k = 0; k < 2; k++)
+                {
+                    if (PolTMT[i, k] != "")
+                    { 
+                    int Iter = Convert.ToInt16(PolTMT[i, k])- 1;
+                    NazwyTMT[i,k] = dataGridView1.Rows[Iter].Cells[1].Value.ToString(); 
+                    }
+                }
+            }
+            ///sprawdzenie połaćzeń 
+            bool pass = false;
+           for(int i = 0; i < 50; i++)
+            {
+                for(int k = 0; k < 50; k++)
+                {
+
+                
+                    if ((dataGridView2.Rows[i].Cells[0].Value.ToString() == NazwyTMT[k, 0] && dataGridView2.Rows[i].Cells[1].Value.ToString() == NazwyTMT[k, 1]) || 
+                    (dataGridView2.Rows[i].Cells[0].Value.ToString() == NazwyTMT[k, 1] && dataGridView2.Rows[i].Cells[0].Value.ToString() == NazwyTMT[k, 1]))
+                    {
+                        pass = true;
+
+                    }
+                   if() 
+                }
+
+            }
+
+
 
         }
 
@@ -355,7 +396,7 @@ namespace Tester_Mod_Adaptation
                     }
                 }
                 catch (TimeoutException) { }
-
+                
             }
         }
     }

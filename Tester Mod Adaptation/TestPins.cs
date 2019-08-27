@@ -30,7 +30,7 @@ namespace Tester_Mod_Adaptation
 
             FormBorderStyle = FormBorderStyle.Sizable;
             WindowState = FormWindowState.Maximized;
-
+            TopMost = true;
         }
         void UstawieniaSerial(SerialPort serial, String wybranyPort)
         {

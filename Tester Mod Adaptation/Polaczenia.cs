@@ -16,6 +16,7 @@ namespace Tester_Mod_Adaptation
     {
         public String[,] PolTMT;
         public String[,] NazwyTMT;
+        public int[,] WynikPol;
         SerialPort serial;
         bool _continue;
         string message;
@@ -27,17 +28,19 @@ namespace Tester_Mod_Adaptation
 
             PolTMT = new string[50,2];
             NazwyTMT = new string[50, 2];
+            WynikPol = new int[50,2];
             for(int i = 0; i < 50; i++)//czyszczenie tablic 
             {
-               
+
                 for(int k = 0; k < 2; k++)
                 {
                     PolTMT[i,k] = "";
                     NazwyTMT[i, k] = "";
+                    WynikPol[i, k] = 0;
                 }
                 
-            }//czyszczenie tablic 
-           
+            }//czyszczenie teablic
+
         }
 
         private void Polaczenia_Load(object sender, EventArgs e)
@@ -352,13 +355,18 @@ namespace Tester_Mod_Adaptation
                 {
 
                 
-                    if ((dataGridView2.Rows[i].Cells[0].Value.ToString() == NazwyTMT[k, 0] && dataGridView2.Rows[i].Cells[1].Value.ToString() == NazwyTMT[k, 1]) || 
-                    (dataGridView2.Rows[i].Cells[0].Value.ToString() == NazwyTMT[k, 1] && dataGridView2.Rows[i].Cells[0].Value.ToString() == NazwyTMT[k, 1]))
+                    if ((dataGridView2.Rows[i].Cells[0].Value.ToString() == NazwyTMT[k, 0] && dataGridView2.Rows[i].Cells[1].Value.ToString() == NazwyTMT[k, 1]&& dataGridView2.Rows[i].Cells[0].Value.ToString()!="" && NazwyTMT[k, 0]!="" )|| 
+                    (dataGridView2.Rows[i].Cells[0].Value.ToString() == NazwyTMT[k, 1] && dataGridView2.Rows[i].Cells[1].Value.ToString() == NazwyTMT[k, 0] && dataGridView2.Rows[i].Cells[0].Value.ToString() != "" && NazwyTMT[k, 0] != ""))
                     {
-                        pass = true;
+                        WynikPol[i, 0] = 1;
+                        WynikPol[i, 1] = 1;
 
                     }
-                   if() 
+                    else
+                    {
+
+                    }
+                  
                 }
 
             }

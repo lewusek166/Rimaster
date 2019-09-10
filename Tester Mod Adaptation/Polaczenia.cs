@@ -362,13 +362,23 @@ namespace Tester_Mod_Adaptation
                         WynikPol[i, 1] = 1;
 
                     }
-                    else
-                    {
-
-                    }
+                  
                   
                 }
 
+            }
+           ///wynik
+           for(int i = 0; i < 50; i++)
+            {
+                if(WynikPol[i,0]==0)
+                {
+                    label4.Text = "OPEN  " + dataGridView2.Rows[i].Cells[0].Value + " - " + dataGridView2.Rows[i].Cells[1] + "/n";
+                    
+                }
+               // if (WynikPol[i, 1] == 0)
+             //   {
+             //      label4.Text="SHORT  " + NazwyTMT[]
+              //  }
             }
 
 

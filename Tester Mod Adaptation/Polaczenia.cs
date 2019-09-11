@@ -393,12 +393,12 @@ namespace Tester_Mod_Adaptation
             {
                 if(WynikPol[i,0]==0)
                 {
-                    label4.Text += "OPEN  " + dataGridView2.Rows[i].Cells[0].Value.ToString() + " - " + dataGridView2.Rows[i].Cells[1].Value.ToString() + "\n";
+                    label4.Text += "OPEN  " + dataGridView2.Rows[i].Cells[0].Value.ToString() + " --- " + dataGridView2.Rows[i].Cells[1].Value.ToString() + "\n";
                     pass = false;
                 }
                 if (WynikPol[i, 1] == 0)
                 {
-                    label4.Text += "SHORT  " + NazwyTMT[i, 0] + " - " + NazwyTMT[i, 1] + "\n";
+                    label4.Text += "SHORT  " + NazwyTMT[i, 0] + " --- " + NazwyTMT[i, 1] + "\n";
                     pass = false;
                 }
             }

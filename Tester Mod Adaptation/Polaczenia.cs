@@ -36,7 +36,7 @@ namespace Tester_Mod_Adaptation
                 {
                     PolTMT[i,k] = "";
                     NazwyTMT[i, k] = "";
-                    WynikPol[i, k] = 0;
+                    WynikPol[i, k] = 2;
                 }
                 
             }//czyszczenie teablic
@@ -349,38 +349,66 @@ namespace Tester_Mod_Adaptation
             }
             ///sprawdzenie połaćzeń 
             bool pass = false;
-           for(int i = 0; i < 50; i++)
+           
+            for (int i = 0; i < 50; i++)
             {
-                for(int k = 0; k < 50; k++)
-                {
-
+                pass = false;
                 
-                    if ((dataGridView2.Rows[i].Cells[0].Value.ToString() == NazwyTMT[k, 0] && dataGridView2.Rows[i].Cells[1].Value.ToString() == NazwyTMT[k, 1]&& dataGridView2.Rows[i].Cells[0].Value.ToString()!="" && NazwyTMT[k, 0]!="" )|| 
+                for (int k = 0; k < 50; k++)
+                {
+                    if ((dataGridView2.Rows[i].Cells[0].Value.ToString() == NazwyTMT[k, 0] && dataGridView2.Rows[i].Cells[1].Value.ToString() == NazwyTMT[k, 1] && dataGridView2.Rows[i].Cells[0].Value.ToString() != "" && NazwyTMT[k, 0] != "") ||
                     (dataGridView2.Rows[i].Cells[0].Value.ToString() == NazwyTMT[k, 1] && dataGridView2.Rows[i].Cells[1].Value.ToString() == NazwyTMT[k, 0] && dataGridView2.Rows[i].Cells[0].Value.ToString() != "" && NazwyTMT[k, 0] != ""))
                     {
                         WynikPol[i, 0] = 1;
-                        WynikPol[i, 1] = 1;
-
+                        pass = true;
                     }
-                  
-                  
                 }
-
+                 if (pass == false&& dataGridView2.Rows[i].Cells[0].Value.ToString() != "")
+                    {
+                    WynikPol[i,0] = 0;
+                    }
+                   
             }
-           ///wynik
-           for(int i = 0; i < 50; i++)
+            for (int i = 0; i < 50; i++)
+            {
+                pass = false;
+
+                for (int k = 0; k < 50; k++)
+                {
+                    if ((NazwyTMT[i, 0] == dataGridView2.Rows[k].Cells[0].Value.ToString() && NazwyTMT[i, 1] == dataGridView2.Rows[k].Cells[1].Value.ToString() && dataGridView2.Rows[k].Cells[0].Value.ToString() != "" && NazwyTMT[i, 0] != "") ||
+                    (NazwyTMT[i, 1] == dataGridView2.Rows[k].Cells[0].Value.ToString() && NazwyTMT[i, 0] == dataGridView2.Rows[k].Cells[1].Value.ToString() && dataGridView2.Rows[k].Cells[0].Value.ToString() != "" && NazwyTMT[i, 0] != ""))
+                    {
+                        WynikPol[i, 1] = 1;
+                        pass = true;
+                    }
+                }
+                if (pass == false && NazwyTMT[i, 0] != "")
+                {
+                    WynikPol[i, 1] = 0;
+                }
+            }
+            ///wynik
+            pass = true;
+            for (int i = 0; i < 50; i++)
             {
                 if(WynikPol[i,0]==0)
                 {
-                    label4.Text = "OPEN  " + dataGridView2.Rows[i].Cells[0].Value + " - " + dataGridView2.Rows[i].Cells[1] + "/n";
-                    
+                    label4.Text += "OPEN  " + dataGridView2.Rows[i].Cells[0].Value.ToString() + " - " + dataGridView2.Rows[i].Cells[1].Value.ToString() + "\n";
+                    pass = false;
                 }
-               // if (WynikPol[i, 1] == 0)
-             //   {
-             //      label4.Text="SHORT  " + NazwyTMT[]
-              //  }
+                if (WynikPol[i, 1] == 0)
+                {
+                    label4.Text += "SHORT  " + NazwyTMT[i, 0] + " - " + NazwyTMT[i, 1] + "\n";
+                    pass = false;
+                }
             }
-
+            if (pass)
+            {
+                label4.Font = new System.Drawing.Font("Arial", 70.1F, System.Drawing.FontStyle.Bold);
+                label4.ForeColor = Color.GreenYellow;
+                label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                label4.Text = "PASS";
+            }
 
 
         }

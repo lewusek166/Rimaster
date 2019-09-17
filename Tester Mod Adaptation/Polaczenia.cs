@@ -224,8 +224,14 @@ namespace Tester_Mod_Adaptation
                     DialogResult dialog= MessageBox.Show("Serial port name isn't correctly or TMT does't connected", "ERROR", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                     if (dialog == DialogResult.Cancel)
                     {
-                       
-                        backgroundWorker1.CancelAsync();////////////////////////////////////do poprawy  
+
+                        if (backgroundWorker1.IsBusy)
+                            backgroundWorker1.CancelAsync();
+
+                        while (backgroundWorker1.IsBusy)
+                        {
+                            Application.DoEvents();
+                        }
                         this.Visible = false;
                         Application.Exit();
                         this.Close();
@@ -349,7 +355,10 @@ namespace Tester_Mod_Adaptation
             }
             ///sprawdzenie połaćzeń 
             bool pass = false;
-           
+            if (serial.IsOpen == false)
+            {
+                serial.Open();
+            }
             for (int i = 0; i < 50; i++)
             {
                 pass = false;
@@ -410,15 +419,23 @@ namespace Tester_Mod_Adaptation
                 label4.Text = "PASS";
             }
 
+            if (backgroundWorker1.IsBusy)
+                backgroundWorker1.CancelAsync();
+
+            while (backgroundWorker1.IsBusy)
+            { 
+                Application.DoEvents();
+            }
+            serial.Write("0");
+            serial.Close();
 
         }
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             IsplitA = 0;
-          
-            while (_continue)
-            {
+        
+           
                 try
                 {
                     message = serial.ReadLine();
@@ -443,7 +460,7 @@ namespace Tester_Mod_Adaptation
                 }
                 catch (TimeoutException) { }
                 
-            }
+            
         }
     }
 }

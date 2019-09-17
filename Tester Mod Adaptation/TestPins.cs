@@ -96,7 +96,7 @@ namespace Tester_Mod_Adaptation
         {
             _continue = true;
             serial = new SerialPort();
-            while (serial.IsOpen == false)
+            if (serial.IsOpen == false)
             {
                 try
                 {
@@ -120,9 +120,8 @@ namespace Tester_Mod_Adaptation
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-           
-            while (_continue)
-            {
+
+            while (true) { 
                 try
                 {
                     message = serial.ReadLine();
@@ -145,6 +144,18 @@ namespace Tester_Mod_Adaptation
 
         private void Button3_Click(object sender, EventArgs e)
         {
+            if (backgroundWorker1.IsBusy)
+                backgroundWorker1.CancelAsync();
+
+            while (backgroundWorker1.IsBusy)
+            {
+                Application.DoEvents();
+            }
+            if (serial.IsOpen)
+            {
+                serial.Write("0");
+                serial.Close();
+            }
             this.Close();
             Connection connection = new Connection();
             connection.Visible = true;

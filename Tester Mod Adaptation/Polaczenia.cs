@@ -18,14 +18,14 @@ namespace Tester_Mod_Adaptation
         public String[,] NazwyTMT;
         public int[,] WynikPol;
         SerialPort serial;
-        bool _continue;
+        bool stop;
         string message;
         int IsplitA,IsplitB;
-
+        int Iter;
         public Polaczenia()
         {
             InitializeComponent();
-
+            stop = false;
             PolTMT = new string[50,2];
             NazwyTMT = new string[50, 2];
             WynikPol = new int[50,2];
@@ -82,7 +82,7 @@ namespace Tester_Mod_Adaptation
             }
         }
 
-        private void PasteClipboard(DataGridView grid)
+        private void PasteClipboard(DataGridView grid)//kopiowanie ze schowka
         {
             try
             {
@@ -130,7 +130,7 @@ namespace Tester_Mod_Adaptation
             }
         }
 
-        private void Button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)//wyjscie close z programu 
         {
             
             DialogResult result;
@@ -146,9 +146,9 @@ namespace Tester_Mod_Adaptation
             this.Close();
             Connection connection = new Connection();
             connection.Visible = true;
-        }
+        }//guzik back
 
-        private void Button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)//kontrola poprawnosci nazewnictwa pinow
         {
             bool kontrol = true;
             char[] charsToTrim = { '\r', ' ', '\'' };//usuwanie znakow nie potrzebnych w nazwach 
@@ -199,13 +199,13 @@ namespace Tester_Mod_Adaptation
         void UstawieniaSerial(SerialPort serial, String wybranyPort)
         {
             serial.PortName = wybranyPort;
-            serial.ReadTimeout = 500;
-            serial.WriteTimeout = 500;
+            serial.ReadTimeout = 1000;
+            serial.WriteTimeout = 1000;
 
         }
         private void Button6_Click(object sender, EventArgs e)
         {
-            _continue = true;
+            
             serial = new SerialPort();
             while (serial.IsOpen == false)
             {
@@ -224,6 +224,7 @@ namespace Tester_Mod_Adaptation
                     DialogResult dialog= MessageBox.Show("Serial port name isn't correctly or TMT does't connected", "ERROR", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                     if (dialog == DialogResult.Cancel)
                     {
+                        stop = true;
 
                         if (backgroundWorker1.IsBusy)
                             backgroundWorker1.CancelAsync();
@@ -244,7 +245,7 @@ namespace Tester_Mod_Adaptation
             serial.Write("2");
             backgroundWorker1.RunWorkerAsync();
            // serial.Close();
-        }
+        }//polaczenie z tmt
 
         private void Button2_Click_1(object sender, EventArgs e)
         {
@@ -337,28 +338,31 @@ namespace Tester_Mod_Adaptation
 
             }
             
-        }
+        }//czyszczenie bialych znakow z nazw
 
-        private void Button5_Click(object sender, EventArgs e)
+        private void Button5_Click(object sender, EventArgs e)//nazwy pinow do  NazwyTMT///sprawdzenie polaczen 
         {
             ///Przetwozenie nazw pinów 
-           for(int i = 0; i < 50; i++)
+           
+           for (int i = 0; i < 50; i++)
             {
               for(int k = 0; k < 2; k++)
                 {
                     if (PolTMT[i, k] != "")
                     { 
-                    int Iter = Convert.ToInt16(PolTMT[i, k])- 1;
+                    Iter = Convert.ToInt16(PolTMT[i, k])- 1;
                     NazwyTMT[i,k] = dataGridView1.Rows[Iter].Cells[1].Value.ToString(); 
                     }
+                    
+                    
                 }
             }
             ///sprawdzenie połaćzeń 
             bool pass = false;
-            if (serial.IsOpen == false)
-            {
-                serial.Open();
-            }
+           // if (serial.IsOpen == false)
+           // {
+          //      serial.Open();
+          //  }
             for (int i = 0; i < 50; i++)
             {
                 pass = false;
@@ -418,7 +422,7 @@ namespace Tester_Mod_Adaptation
                 label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                 label4.Text = "PASS";
             }
-
+            stop = true;
             if (backgroundWorker1.IsBusy)
                 backgroundWorker1.CancelAsync();
 
@@ -434,8 +438,11 @@ namespace Tester_Mod_Adaptation
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             IsplitA = 0;
-        
-           
+
+            while (stop==false)
+            {
+
+            
                 try
                 {
                     message = serial.ReadLine();
@@ -451,6 +458,10 @@ namespace Tester_Mod_Adaptation
                         result = result.Trim(charsToTrim);
                         PolTMT[IsplitA , IsplitB] = result;
                         IsplitB++;
+                        if (IsplitB > 49)
+                        {
+                            IsplitB = 49;
+                        }
                     }
                     IsplitA++;
                     if (IsplitA == 50)
@@ -459,8 +470,8 @@ namespace Tester_Mod_Adaptation
                     }
                 }
                 catch (TimeoutException) { }
-                
-            
+            }
+
         }
     }
 }

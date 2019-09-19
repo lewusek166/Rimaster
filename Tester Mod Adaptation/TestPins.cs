@@ -15,14 +15,14 @@ namespace Tester_Mod_Adaptation
     public partial class TestPins : Form
     {
         SerialPort serial;
-        bool _continue;
+        bool stop;
         string message;
 
 
         public TestPins()
         {
             InitializeComponent();
-
+            stop = false;
         }
 
         private void TestPins_Load(object sender, EventArgs e)
@@ -94,7 +94,7 @@ namespace Tester_Mod_Adaptation
         }
         private void Button1_Click(object sender, EventArgs e)
         {
-            _continue = true;
+            
             serial = new SerialPort();
             if (serial.IsOpen == false)
             {
@@ -121,7 +121,7 @@ namespace Tester_Mod_Adaptation
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
 
-            while (true) { 
+            while (stop==false) { 
                 try
                 {
                     message = serial.ReadLine();
@@ -144,6 +144,7 @@ namespace Tester_Mod_Adaptation
 
         private void Button3_Click(object sender, EventArgs e)
         {
+            stop = true;
             if (backgroundWorker1.IsBusy)
                 backgroundWorker1.CancelAsync();
 
@@ -156,10 +157,15 @@ namespace Tester_Mod_Adaptation
                 serial.Write("0");
                 serial.Close();
             }
+            else{
+                serial.Open();
+                serial.Write("0");
+                serial.Close();
+            }
             this.Close();
             Connection connection = new Connection();
             connection.Visible = true;
-            _continue = false;
+            
             backgroundWorker1.CancelAsync();
         }
     }

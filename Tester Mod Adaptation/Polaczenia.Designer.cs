@@ -28,31 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pasteCtrlVToolStripMenuItem_Click = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.D_Sub = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name_Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button6 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.button3 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.D_Sub = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Name_Pin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -136,29 +137,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(249, 535);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataGridView1_KeyDown);
-            // 
-            // D_Sub
-            // 
-            this.D_Sub.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = null;
-            this.D_Sub.DefaultCellStyle = dataGridViewCellStyle1;
-            this.D_Sub.FillWeight = 2F;
-            this.D_Sub.Frozen = true;
-            this.D_Sub.HeaderText = "D-SUB";
-            this.D_Sub.MinimumWidth = 12;
-            this.D_Sub.Name = "D_Sub";
-            this.D_Sub.ReadOnly = true;
-            this.D_Sub.Width = 95;
-            // 
-            // Name_Pin
-            // 
-            this.Name_Pin.HeaderText = "Name Pin";
-            this.Name_Pin.MinimumWidth = 12;
-            this.Name_Pin.Name = "Name_Pin";
-            this.Name_Pin.Width = 122;
             // 
             // label2
             // 
@@ -250,25 +228,6 @@
             this.dataGridView2.TabIndex = 10;
             this.dataGridView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataGridView2_KeyDown);
             // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Wire From";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 12;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn3.Width = 130;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Wire To        ";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 12;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn4.Width = 126;
-            // 
             // button6
             // 
             this.button6.AutoSize = true;
@@ -313,13 +272,15 @@
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.ColumnCount = 3;
+            this.tableLayoutPanel5.ColumnCount = 4;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 191F));
+            this.tableLayoutPanel5.Controls.Add(this.button3, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.button5, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.button2, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.button3, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.button7, 3, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(319, 580);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -328,14 +289,26 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(734, 59);
             this.tableLayoutPanel5.TabIndex = 13;
             // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.Font = new System.Drawing.Font("Arial", 20.1F, System.Drawing.FontStyle.Bold);
+            this.button3.Location = new System.Drawing.Point(365, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(175, 53);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Close Program";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click_1);
+            // 
             // button5
             // 
             this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button5.Enabled = false;
             this.button5.Font = new System.Drawing.Font("Arial", 25.1F, System.Drawing.FontStyle.Bold);
-            this.button5.Location = new System.Drawing.Point(247, 3);
+            this.button5.Location = new System.Drawing.Point(184, 3);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(238, 53);
+            this.button5.Size = new System.Drawing.Size(175, 53);
             this.button5.TabIndex = 4;
             this.button5.Text = "Test";
             this.button5.UseVisualStyleBackColor = true;
@@ -348,23 +321,23 @@
             this.button2.Font = new System.Drawing.Font("Arial", 25.1F, System.Drawing.FontStyle.Bold);
             this.button2.Location = new System.Drawing.Point(3, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(238, 53);
+            this.button2.Size = new System.Drawing.Size(175, 53);
             this.button2.TabIndex = 3;
             this.button2.Text = "Check Wire";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click_1);
             // 
-            // button3
+            // button7
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.Font = new System.Drawing.Font("Arial", 20.1F, System.Drawing.FontStyle.Bold);
-            this.button3.Location = new System.Drawing.Point(491, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(240, 53);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Close Program";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button7.Font = new System.Drawing.Font("Arial", 20.1F, System.Drawing.FontStyle.Bold);
+            this.button7.Location = new System.Drawing.Point(546, 3);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(185, 53);
+            this.button7.TabIndex = 6;
+            this.button7.Text = "Clear All";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Button7_Click);
             // 
             // label4
             // 
@@ -381,6 +354,46 @@
             this.backgroundWorker1.WorkerReportsProgress = true;
             this.backgroundWorker1.WorkerSupportsCancellation = true;
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
+            // 
+            // D_Sub
+            // 
+            this.D_Sub.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.D_Sub.DefaultCellStyle = dataGridViewCellStyle2;
+            this.D_Sub.FillWeight = 2F;
+            this.D_Sub.Frozen = true;
+            this.D_Sub.HeaderText = "D-SUB";
+            this.D_Sub.MinimumWidth = 12;
+            this.D_Sub.Name = "D_Sub";
+            this.D_Sub.ReadOnly = true;
+            this.D_Sub.Width = 95;
+            // 
+            // Name_Pin
+            // 
+            this.Name_Pin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Name_Pin.HeaderText = "Name Pin";
+            this.Name_Pin.MinimumWidth = 12;
+            this.Name_Pin.Name = "Name_Pin";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Wire From";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 12;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Wire To        ";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 12;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Polaczenia
             // 
@@ -415,21 +428,22 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn D_Sub;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name_Pin;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn D_Sub;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Name_Pin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }

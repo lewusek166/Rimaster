@@ -24,6 +24,7 @@ namespace Tester_Mod_Adaptation
         int Iter;
         public Polaczenia()
         {
+            
             InitializeComponent();
             stop = false;
             PolTMT = new string[50,2];
@@ -51,8 +52,9 @@ namespace Tester_Mod_Adaptation
             for (int i = 1; i < 51; i++)
             {
                 dataGridView1.Rows.Add(i, "");
-                dataGridView2.Rows.Add("", "");
+                dataGridView2.Rows.Add("", "","WIRE");
             }
+           
         }
         private void DataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -130,17 +132,6 @@ namespace Tester_Mod_Adaptation
             }
         }
 
-        private void Button3_Click(object sender, EventArgs e)//wyjscie close z programu 
-        {
-            
-            DialogResult result;
-            result = MessageBox.Show("Exit Aplication ?", "", MessageBoxButtons.YesNo);
-            if(result==DialogResult.Yes)
-            {
-            Application.Exit();
-            }  
-        }
-
         private void Button1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -148,7 +139,7 @@ namespace Tester_Mod_Adaptation
             connection.Visible = true;
         }//guzik back
 
-        private void Button4_Click(object sender, EventArgs e)//kontrola poprawnosci nazewnictwa pinow
+        private void Button4_Click(object sender, EventArgs e)//kontrola poprawnosci nazewnictwa pinow 
         {
             bool kontrol = true;
             char[] charsToTrim = { '\r', ' ', '\'' };//usuwanie znakow nie potrzebnych w nazwach 
@@ -177,11 +168,12 @@ namespace Tester_Mod_Adaptation
 
             }  //sprawdzenie czy nie ma takich samych nazw
             if (kontrol == false)
-            {   
-                MessageBox.Show("Name Pins isn't correctly!!! ", "ERROR", MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }else
             {
-                for(int i = 0; i < 50; i++)
+                MessageBox.Show("Name Pins isn't correctly!!! ", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                for (int i = 0; i < 50; i++)
                 {
                     if (dataGridView1.Rows[i].Cells[1].Value.Equals(""))
                     { }
@@ -189,11 +181,12 @@ namespace Tester_Mod_Adaptation
                     {
                         dataGridView1.Rows[i].Cells[1].Style.BackColor = Color.GreenYellow;
                     }
-                    
-                   
+
+
                 }
 
             }
+           
         }
 
         void UstawieniaSerial(SerialPort serial, String wybranyPort)
@@ -337,7 +330,13 @@ namespace Tester_Mod_Adaptation
                 }
 
             }
-            
+            for (int i = 0; i < 50; i++)//opisanie nie opisanych pinow 
+            {
+                if ((string)dataGridView1.Rows[i].Cells[1].Value == "")
+                {
+                    dataGridView1.Rows[i].Cells[1].Value = dataGridView1.Rows[i].Cells[0].Value;
+                }
+            }
         }//czyszczenie bialych znakow z nazw
 
         private void Button5_Click(object sender, EventArgs e)//nazwy pinow do  NazwyTMT///sprawdzenie polaczen 
@@ -433,6 +432,22 @@ namespace Tester_Mod_Adaptation
             serial.Write("0");
             serial.Close();
 
+        }
+
+        private void Button7_Click(object sender, EventArgs e)
+        {
+            Polaczenia po = new Polaczenia();
+            po.ShowDialog();
+        }
+
+        private void Button3_Click_1(object sender, EventArgs e)
+        {
+            DialogResult result;
+            result = MessageBox.Show("Exit Aplication ?", "", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)

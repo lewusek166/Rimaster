@@ -145,23 +145,7 @@ namespace Tester_Mod_Adaptation
         private void Button3_Click(object sender, EventArgs e)
         {
             stop = true;
-            if (backgroundWorker1.IsBusy)
-                backgroundWorker1.CancelAsync();
-
-            while (backgroundWorker1.IsBusy)
-            {
-                Application.DoEvents();
-            }
-            if (serial.IsOpen)
-            {
-                serial.Write("0");
-                serial.Close();
-            }
-            else{
-                serial.Open();
-                serial.Write("0");
-                serial.Close();
-            }
+           
             this.Close();
             Connection connection = new Connection();
             connection.Visible = true;

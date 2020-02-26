@@ -45,5 +45,10 @@ namespace Tester_Mod_Adaptation
             test.ShowDialog();
 
         }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+        }
     }
 }

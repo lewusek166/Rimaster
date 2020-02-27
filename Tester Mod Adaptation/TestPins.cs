@@ -134,10 +134,13 @@ namespace Tester_Mod_Adaptation
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            serial.Write("0");
+            serial.Close();
             DialogResult result;
             result = MessageBox.Show("Exit Aplication ?", "", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                serial.Close();
                 Application.Exit();
             }
         }
@@ -149,7 +152,8 @@ namespace Tester_Mod_Adaptation
             this.Close();
             Connection connection = new Connection();
             connection.Visible = true;
-            
+            serial.Write("0");
+            serial.Close();
             backgroundWorker1.CancelAsync();
         }
     }

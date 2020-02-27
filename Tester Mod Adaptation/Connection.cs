@@ -49,6 +49,9 @@ namespace Tester_Mod_Adaptation
         private void Button3_Click(object sender, EventArgs e)
         {
             this.Visible = false;
+            Rezystor rez = new Rezystor();
+            rez.ShowDialog();
+
         }
     }
 }

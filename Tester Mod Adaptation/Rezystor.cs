@@ -17,11 +17,49 @@ namespace Tester_Mod_Adaptation
         SerialPort serial;
         bool stop;
         string message;
-
+        private delegate void SafeCallDelegate(string text);
         public Rezystor()
         {
             InitializeComponent();
             stop = false;
+        }
+        void wynik(string m)
+        {
+            char[] charsToTrim = { '\r', ' ', '\'' };
+            m = m.Trim(charsToTrim);
+            float w;
+            NumberFormatInfo setPrecision = new NumberFormatInfo();
+            setPrecision.NumberDecimalDigits = 2;
+            try
+            {
+                 w = float.Parse(m, CultureInfo.InvariantCulture);
+            }
+            catch
+            {
+                w = 0;
+            }
+            
+            if (w > 999)
+            {
+                w /= 1000;
+                WriteTextSafe(w.ToString("N", setPrecision) +"  K OHM");
+            }
+            else
+            {
+                WriteTextSafe(w.ToString("N", setPrecision) + "  OHM");
+            }
+        }
+        private void WriteTextSafe(string text)
+        {
+            if (label2.InvokeRequired)
+            {
+                var d = new SafeCallDelegate(WriteTextSafe);
+                label2.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                label2.Text = text;
+            }
         }
         private void Rezystor_Load(object sender, EventArgs e)
         {
@@ -53,50 +91,30 @@ namespace Tester_Mod_Adaptation
                 catch (Exception)
                 {
                     MessageBox.Show("Serial port name isn't correctly", "ERROR", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-
                 }
             }
 
             serial.Write("3");
-            backgroundWorker1.RunWorkerAsync();
+             backgroundWorker1.RunWorkerAsync();
+            
         }
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-
             while (stop == false)
             {
                 try
                 {
+                    serial.DiscardInBuffer();
                     message = serial.ReadLine();
-                   //wynik(message);
-                    label2.Text = "kjgjhgjh";
-
+                    wynik(message);
                 }
                 catch (TimeoutException) { }
-            }
-        }
-         void wynik (string m)
-        {
-           // char[] charsToTrim = { '\r', ' ', '\'' };
-            //m = m.Trim(charsToTrim);
-            label2.Text = "kjgjhgjh";
-            /*float wynik = float.Parse(m, CultureInfo.InvariantCulture);
-            if (wynik > 999)
-            {
-                wynik /= 1000;
-                label2.Text = String.Format("{0:F2}", wynik+"K");
-            }
-            else
-            {
-                label1.Text = m;
-                label2.Text = "kupa";
-           */ 
-        }
 
+            }
+        }
         private void Button2_Click(object sender, EventArgs e)
         {
-            serial.Write("0");
-            serial.Close();
+            stop = true;
             DialogResult result;
             result = MessageBox.Show("Exit Aplication ?", "", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -109,15 +127,13 @@ namespace Tester_Mod_Adaptation
         private void Button3_Click(object sender, EventArgs e)
         {
             stop = true;
-
             this.Close();
             Connection connection = new Connection();
             connection.Visible = true;
-            serial.Write("0");
-            serial.Close();
             backgroundWorker1.CancelAsync();
         }
 
         
+
     }
 }

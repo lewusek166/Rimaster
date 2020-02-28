@@ -152,8 +152,7 @@ namespace Tester_Mod_Adaptation
             this.Close();
             Connection connection = new Connection();
             connection.Visible = true;
-            serial.Write("0");
-            serial.Close();
+
             backgroundWorker1.CancelAsync();
         }
     }
